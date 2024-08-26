@@ -10,12 +10,25 @@ import os
 st.set_page_config(page_title="Vegetable Image Classification")
 
 # Load the model
-# Determine the correct path to model.h5
-model_path = os.path.join('Vegetable Image Deployment', 'model.h5')
+# Define the model path and URL
+model_filename = 'model.h5'
+model_url = 'https://github.com/Abeshith/Vegetable_Deployment/raw/main/Vegetable%20Image%20Deployment/model.h5'
+
+# Download the model if it doesn't exist
+if not os.path.exists(model_filename):
+    st.info(f"Downloading model from {model_url}...")
+    try:
+        response = requests.get(model_url)
+        with open(model_filename, 'wb') as f:
+            f.write(response.content)
+        st.success("Model downloaded successfully!")
+    except Exception as e:
+        st.error(f"Error downloading the model: {e}")
 
 # Load the model
 try:
-    model = load_model(model_path)
+    model = load_model(model_filename)
+    st.success("Model loaded successfully!")
 except Exception as e:
     st.error(f"Error loading model: {e}")
 
