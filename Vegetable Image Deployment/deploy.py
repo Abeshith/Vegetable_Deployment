@@ -9,8 +9,12 @@ from PIL import Image
 st.set_page_config(page_title="Vegetable Image Classification")
 
 # Load the model
+# Determine the correct path to model.h5
+model_path = os.path.join(os.path.dirname(__file__), 'model.h5')
+
+# Load the model
 try:
-    model = load_model('model.h5')
+    model = load_model(model_path)
 except Exception as e:
     st.error(f"Error loading model: {e}")
 
