@@ -82,4 +82,9 @@ elif selected == "Upload Image":
         st.write(f"**Prediction:** {class_name}")
 
         # Display features of the predicted vegetable
-        st.write(f"**Features of {class_name}:** {vegetable_features[class_name
+        st.write(f"**Features of {class_name}:** {vegetable_features[class_name]}")
+
+elif selected == "About":
+    st.title("About This App")
+    st.write("This app classifies vegetables using a pre-trained model.")
+    st.write("Upload an image of a vegetable, and the model will predict its class along with detailed features of the vegetable.")
