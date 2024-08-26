@@ -11,7 +11,7 @@ st.set_page_config(page_title="Vegetable Image Classification")
 
 # Load the model
 # Determine the correct path to model.h5
-model_path = os.path.join(os.path.dirname(__file__), 'model.h5')
+model_path = os.path.join('Vegetable Image Deployment', 'model.h5')
 
 # Load the model
 try:
