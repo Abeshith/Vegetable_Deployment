@@ -11,25 +11,28 @@ import requests
 st.set_page_config(page_title="Vegetable Image Classification")
 
 # Load the model
-# Define the model path and URL
-model_filename = 'model.h5'
-model_url = 'https://github.com/Abeshith/Vegetable_Deployment/raw/main/Vegetable%20Image%20Deployment/model.h5'
+# Function to download the model from Google Drive
+def download_model_from_drive(drive_url, model_path):
+    response = requests.get(drive_url)
+    with open(model_path, 'wb') as f:
+        f.write(response.content)
 
-# Download the model if it doesn't exist
-if not os.path.exists(model_filename):
-    st.info(f"Downloading model from {model_url}...")
-    try:
-        response = requests.get(model_url)
-        with open(model_filename, 'wb') as f:
-            f.write(response.content)
-        st.success("Model downloaded successfully!")
-    except Exception as e:
-        st.error(f"Error downloading the model: {e}")
+# Google Drive direct download URL for the model
+drive_url = "https://drive.google.com/uc?export=download&id=1V5ynGZ9ZdwLn92bt-mWpc0F1UtlG2c8R"
+
+# Local path where the model will be saved
+model_path = 'model.h5'
+
+# Download and save the model locally if it doesn't exist
+if not os.path.exists(model_path):
+    st.write("Downloading the model...")
+    download_model_from_drive(drive_url, model_path)
+    st.write("Model downloaded successfully!")
 
 # Load the model
 try:
-    model = load_model(model_filename)
-    st.success("Model loaded successfully!")
+    model = load_model(model_path)
+    st.write("Model loaded successfully!")
 except Exception as e:
     st.error(f"Error loading model: {e}")
 
