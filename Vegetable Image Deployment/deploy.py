@@ -5,6 +5,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from PIL import Image
 import os
+import requests
 
 # Set page configuration
 st.set_page_config(page_title="Vegetable Image Classification")
