@@ -1,6 +1,0 @@
-streamlit
-streamlit_option_menu
-tensorflow
-numpy
-Pillow
-requests
